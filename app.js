@@ -28,4 +28,16 @@ async function main() {
 
 app.use("/", indexRouter);
 
+//catch when when request match no route
+app.use((req, res, next) => {
+  const exception = new Error(`Path not found`);
+  exception.statusCode = 404;
+  next(exception);
+});
+
+//customize express error handling middleware
+app.use((err, req, res, next) => {
+  res.status(err.statusCode).send(err.message);
+});
+
 module.exports = app;
