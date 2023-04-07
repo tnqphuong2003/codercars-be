@@ -171,7 +171,6 @@ carController.deleteCar = async (req, res, next) => {
       throw exception;
     }
 
-    targetId = mongoose.Types.ObjectId(targetId);
     //find car by id
     const targetCar = await Car.findById(targetId);
     if (!targetCar) {
